@@ -32,4 +32,12 @@ gn_terminal_plus/ef_env.o: ..\Core\Src\ef_env.c \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h \
   ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h \
-  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h
+  ..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_uart.h \
+  ..\Middlewares\Third_Party\RealThread_RTOS\include\rtthread.h \
+  ..\RT-Thread\rtconfig.h \
+  ..\Middlewares\Third_Party\RealThread_RTOS\include\rtdebug.h \
+  ..\Middlewares\Third_Party\RealThread_RTOS\include\rtdef.h \
+  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
+  ..\Middlewares\Third_Party\RealThread_RTOS\include\rtservice.h \
+  ..\Middlewares\Third_Party\RealThread_RTOS\finsh\finsh_api.h \
+  ..\Middlewares\Third_Party\RealThread_RTOS\finsh\finsh_config.h

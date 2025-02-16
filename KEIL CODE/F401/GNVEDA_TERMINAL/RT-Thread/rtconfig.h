@@ -3,7 +3,6 @@
 
 #ifndef __RTTHREAD_CFG_H__
 #define __RTTHREAD_CFG_H__
-#define RT_USING_FINSH
 
 // <<< Use Configuration Wizard in Context Menu >>>
 // <h>Basic Configuration
@@ -115,7 +114,7 @@
 // </c>
 // <c1>Dynamic Heap Management
 //  <i>Dynamic Heap Management
-#define RT_USING_HEAP
+//#define RT_USING_HEAP
 // </c>
 // <c1>using small memory
 //  <i>using small memory

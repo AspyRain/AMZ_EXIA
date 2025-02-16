@@ -1,0 +1,1123 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.37.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 123123 1436582605@qq.com, 23, LIC=X96CK-Z7IUK-KPZZY-IRSDW-66JJA-MEQDX
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.37.0.0
+Toolchain Path:  D:\software\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.18
+Assembler:       Armasm.exe V6.18
+Linker/Locator:  ArmLink.exe V6.18
+Library Manager: ArmAr.exe V6.18
+Hex Converter:   FromElf.exe V6.18
+CPU DLL:         SARMCM3.DLL V5.37.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
+Dialog DLL:      TCM.DLL V1.56.1.0
+ 
+<h2>Project:</h2>
+D:\selfcode\AMZ_EXIA\KEIL CODE\F401\FLASHDB_TEST\MDK-ARM\FLASHDB_TEST.uvprojx
+Project File Date:  09/13/2024
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.18', folder: 'D:\software\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'FLASHDB_TEST'
+../Core/Src/fdb.c(15): warning: In file included from...
+../Core/Inc\fdb_low_lvl.h(18): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 1)
+                    ^
+1 error generated.
+compiling fdb.c...
+../Core/Src/fdb_utils.c(17): warning: In file included from...
+../Core/Inc\fdb_low_lvl.h(18): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 1)
+                    ^
+../Core/Src/fdb_utils.c(110): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 1)
+                    ^
+../Core/Src/fdb_utils.c(118): error: expected expression
+        byte_index = (status_index - 1) * (FDB_WRITE_GRAN / 8);
+                                                          ^
+../Core/Src/fdb_utils.c(132): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 1)
+                    ^
+../Core/Src/fdb_utils.c(137): error: expected expression
+        if (status_table[status_num * FDB_WRITE_GRAN / 8] == FDB_BYTE_WRITTEN) {
+                                                     ^
+../Core/Src/fdb_utils.c(162): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 1)
+                    ^
+../Core/Src/fdb_utils.c(167): error: expected expression
+    result = _fdb_flash_write(db, addr + byte_index, (uint32_t *) &status_table[byte_index], FDB_WRITE_GRAN / 8, sync);
+                                                                                                            ^
+../Core/Src/fdb_utils.c(206): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        return FDB_WG_ALIGN(addr);
+               ^~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+1 warning and 7 errors generated.
+compiling fdb_utils.c...
+compiling fal_flash.c...
+compiling fal.c...
+../Core/Src/fal_partition.c(57): error: "You must defined FAL_PART_TABLE_FLASH_DEV_NAME on 'fal_cfg.h'"
+#error "You must defined FAL_PART_TABLE_FLASH_DEV_NAME on 'fal_cfg.h'"
+ ^
+../Core/Src/fal_partition.c(62): error: "You must defined FAL_PART_TABLE_END_OFFSET on 'fal_cfg.h'"
+#error "You must defined FAL_PART_TABLE_END_OFFSET on 'fal_cfg.h'"
+ ^
+../Core/Src/fal_partition.c(175): error: use of undeclared identifier 'FAL_PART_TABLE_END_OFFSET'
+    long part_table_offset = FAL_PART_TABLE_END_OFFSET;
+                             ^
+../Core/Src/fal_partition.c(183): error: use of undeclared identifier 'FAL_PART_TABLE_FLASH_DEV_NAME'
+    flash_dev = fal_flash_device_find(FAL_PART_TABLE_FLASH_DEV_NAME);
+                                      ^
+../Core/Src/fal_partition.c(186): error: use of undeclared identifier 'FAL_PART_TABLE_FLASH_DEV_NAME'
+        log_e("Initialize failed! Flash device (%s) NOT found.", FAL_PART_TABLE_FLASH_DEV_NAME);
+                                                                 ^
+../Core/Src/fal_partition.c(291): error: use of undeclared identifier 'FAL_PART_TABLE_FLASH_DEV_NAME'
+        log_e("Partition table NOT found on flash: %s (len: %d) from offset: 0x%08x.", FAL_PART_TABLE_FLASH_DEV_NAME,
+                                                                                       ^
+../Core/Src/fal_partition.c(292): error: use of undeclared identifier 'FAL_PART_TABLE_END_OFFSET'
+                FAL_DEV_NAME_MAX, FAL_PART_TABLE_END_OFFSET);
+                                  ^
+7 errors generated.
+compiling fal_partition.c...
+../Core/Src/fdb_kvdb.c(17): warning: In file included from...
+../Core/Inc\fdb_low_lvl.h(18): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 1)
+                    ^
+../Core/Src/fdb_kvdb.c(30): error: invalid token at start of a preprocessor expression
+#if FDB_WRITE_GRAN != 1 && FDB_WRITE_GRAN != 8 && FDB_WRITE_GRAN != 32 && FDB_WRITE_GRAN != 64 && FDB_WRITE_GRAN != 128
+                   ^
+../Core/Src/fdb_kvdb.c(108): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 64) || (FDB_WRITE_GRAN == 128)
+                    ^
+../Core/Src/fdb_kvdb.c(121): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 64)
+                    ^
+../Core/Src/fdb_kvdb.c(124): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 128)
+                    ^
+../Core/Src/fdb_kvdb.c(256): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            _fdb_flash_read((fdb_db_t)db, db->kv_cache_table[i].addr + KV_HDR_DATA_SIZE, (uint32_t *) saved_name, FDB_KV_NAME_MAX);
+                                                                       ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(318): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        addr = sector->addr + SECTOR_HDR_DATA_SIZE;
+                              ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(326): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                addr = pre_kv->addr.start + FDB_WG_ALIGN(1);
+                                            ^~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(329): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            addr = find_next_kv_addr(db, addr, sector->addr + db_sec_size(db) - SECTOR_HDR_DATA_SIZE);
+                                                                                ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(356): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    if (kv->len == UINT32_MAX || kv->len > db_max_size(db) || kv->len < KV_HDR_DATA_SIZE) {
+                                                                        ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(358): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        kv->len = KV_HDR_DATA_SIZE;
+                  ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(366): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    } else if (kv->len > db_sec_size(db) - SECTOR_HDR_DATA_SIZE && kv->len < db_max_size(db)) {
+                                           ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(373): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    crc_data_len = kv->len - KV_HDR_DATA_SIZE;
+                             ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(382): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        _fdb_flash_read((fdb_db_t)db, kv->addr.start + KV_HDR_DATA_SIZE + len, (uint32_t *) buf, FDB_WG_ALIGN(size));
+                                                       ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(382): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        _fdb_flash_read((fdb_db_t)db, kv->addr.start + KV_HDR_DATA_SIZE + len, (uint32_t *) buf, FDB_WG_ALIGN(size));
+                                                                                                 ^~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(391): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        kv_name_addr = kv->addr.start + KV_HDR_DATA_SIZE;
+                                        ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(392): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        _fdb_flash_read((fdb_db_t)db, kv_name_addr, (uint32_t *)kv->name, FDB_WG_ALIGN(name_len));
+                                                                          ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(397): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        kv_name_addr = kv->addr.start + KV_HDR_DATA_SIZE;
+                                        ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(398): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        _fdb_flash_read((fdb_db_t)db, kv_name_addr, (uint32_t *) kv->name, FDB_WG_ALIGN(kv_hdr.name_len));
+                                                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(400): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        kv->addr.value = kv_name_addr + FDB_WG_ALIGN(kv_hdr.name_len);
+                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(450): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        sector->empty_kv = sector->addr + SECTOR_HDR_DATA_SIZE;
+                                          ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(452): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            sector->remain = db_sec_size(db) - SECTOR_HDR_DATA_SIZE;
+                                               ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(457): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            sector->remain = db_sec_size(db) - SECTOR_HDR_DATA_SIZE;
+                                               ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(458): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            kv_obj.addr.start = sector->addr + SECTOR_HDR_DATA_SIZE;
+                                               ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(542): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            kv->addr.start = sector.addr + SECTOR_HDR_DATA_SIZE;
+                                           ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(776): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 1)
+                    ^
+../Core/Src/fdb_kvdb.c(840): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        if (sector->remain < FDB_SEC_REMAIN_THRESHOLD || sector->remain - new_kv_len < FDB_SEC_REMAIN_THRESHOLD) {
+                             ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(41): note: expanded from macro 'FDB_SEC_REMAIN_THRESHOLD'
+#define FDB_SEC_REMAIN_THRESHOLD                  (KV_HDR_DATA_SIZE + FDB_KV_NAME_MAX)
+                                                   ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(840): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        if (sector->remain < FDB_SEC_REMAIN_THRESHOLD || sector->remain - new_kv_len < FDB_SEC_REMAIN_THRESHOLD) {
+                                                                                       ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(41): note: expanded from macro 'FDB_SEC_REMAIN_THRESHOLD'
+#define FDB_SEC_REMAIN_THRESHOLD                  (KV_HDR_DATA_SIZE + FDB_KV_NAME_MAX)
+                                                   ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(901): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    if (sector->check_ok && sector->remain > arg->kv_size + FDB_SEC_REMAIN_THRESHOLD
+                                                            ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(41): note: expanded from macro 'FDB_SEC_REMAIN_THRESHOLD'
+#define FDB_SEC_REMAIN_THRESHOLD                  (KV_HDR_DATA_SIZE + FDB_KV_NAME_MAX)
+                                                   ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1045): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            _fdb_flash_read((fdb_db_t)db, kv->addr.start + KV_MAGIC_OFFSET + len, (uint32_t *) buf, FDB_WG_ALIGN(size));
+                                                                                                    ^~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1052): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                kv_addr + KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv->name_len) + FDB_WG_ALIGN(kv->value_len));
+                          ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1052): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                kv_addr + KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv->name_len) + FDB_WG_ALIGN(kv->value_len));
+                                             ^~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1052): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                kv_addr + KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv->name_len) + FDB_WG_ALIGN(kv->value_len));
+                                                                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1089): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    size_t kv_len = KV_HDR_DATA_SIZE + FDB_WG_ALIGN(key_len) + FDB_WG_ALIGN(buf_len);
+                    ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1089): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    size_t kv_len = KV_HDR_DATA_SIZE + FDB_WG_ALIGN(key_len) + FDB_WG_ALIGN(buf_len);
+                                       ^~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1089): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    size_t kv_len = KV_HDR_DATA_SIZE + FDB_WG_ALIGN(key_len) + FDB_WG_ALIGN(buf_len);
+                                                               ^~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1117): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        kv.addr.start = sector->addr + SECTOR_HDR_DATA_SIZE;
+                                       ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1128): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        gc->cur_free_size += db_sec_size(db) - SECTOR_HDR_DATA_SIZE;
+                                               ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1172): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN / 8 > 0)
+                    ^
+../Core/Src/fdb_kvdb.c(1182): warning: division by zero is undefined [-Wdivision-by-zero]
+    result = _fdb_flash_write((fdb_db_t) db, addr, buf, FDB_WG_ALIGN_DOWN(size), false);
+                                                        ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(41): note: expanded from macro 'FDB_WG_ALIGN_DOWN'
+#define FDB_WG_ALIGN_DOWN(size)                   (FDB_ALIGN_DOWN(size, (FDB_WRITE_GRAN + 7)/8))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(39): note: expanded from macro 'FDB_ALIGN_DOWN'
+#define FDB_ALIGN_DOWN(size, align)               (((size) / (align)) * (align))
+                                                           ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1184): warning: division by zero is undefined [-Wdivision-by-zero]
+    align_remain = size - FDB_WG_ALIGN_DOWN(size);
+                          ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(41): note: expanded from macro 'FDB_WG_ALIGN_DOWN'
+#define FDB_WG_ALIGN_DOWN(size)                   (FDB_ALIGN_DOWN(size, (FDB_WRITE_GRAN + 7)/8))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(39): note: expanded from macro 'FDB_ALIGN_DOWN'
+#define FDB_ALIGN_DOWN(size, align)               (((size) / (align)) * (align))
+                                                           ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1186): warning: division by zero is undefined [-Wdivision-by-zero]
+        memcpy(align_data, (uint8_t *) buf + FDB_WG_ALIGN_DOWN(size), align_remain);
+                                             ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(41): note: expanded from macro 'FDB_WG_ALIGN_DOWN'
+#define FDB_WG_ALIGN_DOWN(size)                   (FDB_ALIGN_DOWN(size, (FDB_WRITE_GRAN + 7)/8))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(39): note: expanded from macro 'FDB_ALIGN_DOWN'
+#define FDB_ALIGN_DOWN(size, align)               (((size) / (align)) * (align))
+                                                           ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1187): warning: division by zero is undefined [-Wdivision-by-zero]
+        result = _fdb_flash_write((fdb_db_t) db, addr + FDB_WG_ALIGN_DOWN(size), (uint32_t *) align_data,
+                                                        ^~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(41): note: expanded from macro 'FDB_WG_ALIGN_DOWN'
+#define FDB_WG_ALIGN_DOWN(size)                   (FDB_ALIGN_DOWN(size, (FDB_WRITE_GRAN + 7)/8))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(39): note: expanded from macro 'FDB_ALIGN_DOWN'
+#define FDB_ALIGN_DOWN(size, align)               (((size) / (align)) * (align))
+                                                           ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1210): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    kv_hdr.len = KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv_hdr.name_len) + FDB_WG_ALIGN(kv_hdr.value_len);
+                 ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1210): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    kv_hdr.len = KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv_hdr.name_len) + FDB_WG_ALIGN(kv_hdr.value_len);
+                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1210): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    kv_hdr.len = KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv_hdr.name_len) + FDB_WG_ALIGN(kv_hdr.value_len);
+                                                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1212): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    if (kv_hdr.len > db_sec_size(db) - SECTOR_HDR_DATA_SIZE) {
+                                       ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1231): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            align_remain = FDB_WG_ALIGN(kv_hdr.name_len) - kv_hdr.name_len;
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1236): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            align_remain = FDB_WG_ALIGN(kv_hdr.value_len) - kv_hdr.value_len;
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1245): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            result = align_write(db, kv_addr + KV_HDR_DATA_SIZE, (uint32_t *) key, kv_hdr.name_len);
+                                               ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1250): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                        kv_addr + KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv_hdr.name_len) + FDB_WG_ALIGN(kv_hdr.value_len));
+                                  ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1250): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                        kv_addr + KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv_hdr.name_len) + FDB_WG_ALIGN(kv_hdr.value_len));
+                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1250): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                        kv_addr + KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv_hdr.name_len) + FDB_WG_ALIGN(kv_hdr.value_len));
+                                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1257): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            result = align_write(db, kv_addr + KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv_hdr.name_len), value,
+                                               ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1257): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            result = align_write(db, kv_addr + KV_HDR_DATA_SIZE + FDB_WG_ALIGN(kv_hdr.name_len), value,
+                                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1332): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            gc_collect_by_free_size(db, KV_HDR_DATA_SIZE + FDB_WG_ALIGN(strlen(key)) + FDB_WG_ALIGN(buf_len));
+                                        ^~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(77): note: expanded from macro 'KV_HDR_DATA_SIZE'
+#define KV_HDR_DATA_SIZE                         (FDB_WG_ALIGN(sizeof(struct kv_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1332): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            gc_collect_by_free_size(db, KV_HDR_DATA_SIZE + FDB_WG_ALIGN(strlen(key)) + FDB_WG_ALIGN(buf_len));
+                                                           ^~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1332): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            gc_collect_by_free_size(db, KV_HDR_DATA_SIZE + FDB_WG_ALIGN(strlen(key)) + FDB_WG_ALIGN(buf_len));
+                                                                                       ^~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1462): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                    _fdb_flash_read((fdb_db_t)db, kv->addr.value + len, (uint32_t *) buf, FDB_WG_ALIGN(size));
+                                                                                          ^~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1508): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    FDB_PRINT("size: %" PRIu32 "/%" PRIu32 " bytes.\n", (uint32_t)using_size + ((SECTOR_NUM - FDB_GC_EMPTY_SEC_THRESHOLD) * SECTOR_HDR_DATA_SIZE),
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^
+../Core/Inc\fdb_def.h(61): note: expanded from macro 'FDB_PRINT'
+#define FDB_PRINT(...)                 printf(__VA_ARGS__)
+                                              ^~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(1757): error: expected expression
+    FDB_ASSERT((FDB_STR_KV_VALUE_MAX_SIZE * 8) % FDB_WRITE_GRAN == 0);
+                                                                ^
+../Core/Src/fdb_kvdb.c(1875): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                    kv->addr.start = sector.addr + SECTOR_HDR_DATA_SIZE;
+                                                   ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_kvdb.c(1935): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                kv.addr.start = sector.addr + SECTOR_HDR_DATA_SIZE;
+                                              ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_kvdb.c(73): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+55 warnings and 8 errors generated.
+compiling fdb_kvdb.c...
+../Core/Src/fdb_tsdb.c(19): warning: In file included from...
+../Core/Inc\fdb_low_lvl.h(18): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 1)
+                    ^
+../Core/Src/fdb_tsdb.c(28): error: invalid token at start of a preprocessor expression
+#if (FDB_WRITE_GRAN == 64) || (FDB_WRITE_GRAN == 128)
+                    ^
+../Core/Src/fdb_tsdb.c(156): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    if (pre_tsl->addr.index + LOG_IDX_DATA_SIZE <= sector->end_idx) {
+                              ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(157): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        addr = pre_tsl->addr.index + LOG_IDX_DATA_SIZE;
+                                     ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(174): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    if (pre_tsl->addr.index >= (sector->addr + SECTOR_HDR_DATA_SIZE + LOG_IDX_DATA_SIZE)) {
+                                               ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(37): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(174): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    if (pre_tsl->addr.index >= (sector->addr + SECTOR_HDR_DATA_SIZE + LOG_IDX_DATA_SIZE)) {
+                                                                      ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(175): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        addr = pre_tsl->addr.index - LOG_IDX_DATA_SIZE;
+                                     ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(232): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    sector->empty_idx = sector->addr + SECTOR_HDR_DATA_SIZE;
+                                       ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(37): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(246): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            sector->empty_idx += LOG_IDX_DATA_SIZE;
+                                 ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(247): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            sector->empty_data -= FDB_WG_ALIGN(tsl.log_len);
+                                  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(248): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            tsl.addr.index += LOG_IDX_DATA_SIZE;
+                              ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(249): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            if (sector->remain > LOG_IDX_DATA_SIZE + FDB_WG_ALIGN(tsl.log_len)) {
+                                 ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(249): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            if (sector->remain > LOG_IDX_DATA_SIZE + FDB_WG_ALIGN(tsl.log_len)) {
+                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(250): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                sector->remain -= (LOG_IDX_DATA_SIZE + FDB_WG_ALIGN(tsl.log_len));
+                                   ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(250): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                sector->remain -= (LOG_IDX_DATA_SIZE + FDB_WG_ALIGN(tsl.log_len));
+                                                       ^~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(310): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    idx.log_addr = db->cur_sec.empty_data - FDB_WG_ALIGN(idx.log_len);
+                                            ^~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(328): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    if (sector->status == FDB_SECTOR_STORE_USING && sector->remain < LOG_IDX_DATA_SIZE + FDB_WG_ALIGN(blob->size)) {
+                                                                     ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(328): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    if (sector->status == FDB_SECTOR_STORE_USING && sector->remain < LOG_IDX_DATA_SIZE + FDB_WG_ALIGN(blob->size)) {
+                                                                                         ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(330): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        uint32_t end_index = sector->empty_idx - LOG_IDX_DATA_SIZE, new_sec_addr, cur_sec_addr = sector->addr;
+                                                 ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(419): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    db->cur_sec.empty_idx += LOG_IDX_DATA_SIZE;
+                             ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(420): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    db->cur_sec.empty_data -= FDB_WG_ALIGN(blob->size);
+                              ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(421): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    db->cur_sec.remain -= LOG_IDX_DATA_SIZE + FDB_WG_ALIGN(blob->size);
+                          ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(421): warning: remainder by zero is undefined [-Wdivision-by-zero]
+    db->cur_sec.remain -= LOG_IDX_DATA_SIZE + FDB_WG_ALIGN(blob->size);
+                                              ^~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(510): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            tsl.addr.index = sector.addr + SECTOR_HDR_DATA_SIZE;
+                                           ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(37): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(584): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        tsl.addr.index = start + FDB_ALIGN((end - start) / 2, LOG_IDX_DATA_SIZE);
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                              ^~~~~
+../Core/Src/fdb_tsdb.c(584): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        tsl.addr.index = start + FDB_ALIGN((end - start) / 2, LOG_IDX_DATA_SIZE);
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                        ^~~~~
+../Core/Src/fdb_tsdb.c(584): warning: remainder by zero is undefined [-Wdivision-by-zero]
+        tsl.addr.index = start + FDB_ALIGN((end - start) / 2, LOG_IDX_DATA_SIZE);
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                      ^~~~~
+../Core/Src/fdb_tsdb.c(587): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            start = tsl.addr.index + LOG_IDX_DATA_SIZE;
+                                     ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(589): warning: remainder by zero is undefined [-Wdivision-by-zero]
+            end = tsl.addr.index - LOG_IDX_DATA_SIZE;
+                                   ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(599): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                    start -= LOG_IDX_DATA_SIZE;
+                             ^~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(38): note: expanded from macro 'LOG_IDX_DATA_SIZE'
+#define LOG_IDX_DATA_SIZE                        (FDB_WG_ALIGN(sizeof(struct log_idx_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+../Core/Src/fdb_tsdb.c(667): warning: remainder by zero is undefined [-Wdivision-by-zero]
+                uint32_t start = sector.addr + SECTOR_HDR_DATA_SIZE, end = sector.end_idx;
+                                               ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/fdb_tsdb.c(37): note: expanded from macro 'SECTOR_HDR_DATA_SIZE'
+#define SECTOR_HDR_DATA_SIZE                     (FDB_WG_ALIGN(sizeof(struct sector_hdr_data)))
+                                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(34): note: expanded from macro 'FDB_WG_ALIGN'
+#define FDB_WG_ALIGN(size)                        (FDB_ALIGN(size, ((FDB_WRITE_GRAN + 7)/8)))
+                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Inc\fdb_low_lvl.h(32): note: expanded from macro 'FDB_ALIGN'
+#define FDB_ALIGN(size, align)                    (((size) + (align) - 1) - (((size) + (align) -1) % (align)))
+                                                                                                   ^ ~~~~~~~
+29 warnings and 2 errors generated.
+compiling fdb_tsdb.c...
+../Core/Src/fal_flash_stm32f4.c(74): error: use of undeclared identifier 'FLASH_SECTOR_6'
+        sector = FLASH_SECTOR_6;
+                 ^
+../Core/Src/fal_flash_stm32f4.c(78): error: use of undeclared identifier 'FLASH_SECTOR_7'
+        sector = FLASH_SECTOR_7;
+                 ^
+../Core/Src/fal_flash_stm32f4.c(160): error: use of undeclared identifier 'stm32_onchip_flash'; did you mean 'stm32f2_onchip_flash'?
+    long addr = stm32_onchip_flash.addr + offset;
+                ^~~~~~~~~~~~~~~~~~
+                stm32f2_onchip_flash
+../Core/Inc\fal_cfg.h(20): note: 'stm32f2_onchip_flash' declared here
+extern const struct fal_flash_dev stm32f2_onchip_flash;
+                                  ^
+../Core/Src/fal_flash_stm32f4.c(172): error: use of undeclared identifier 'stm32_onchip_flash'; did you mean 'stm32f2_onchip_flash'?
+    long addr = stm32_onchip_flash.addr + offset;
+                ^~~~~~~~~~~~~~~~~~
+                stm32f2_onchip_flash
+../Core/Inc\fal_cfg.h(20): note: 'stm32f2_onchip_flash' declared here
+extern const struct fal_flash_dev stm32f2_onchip_flash;
+                                  ^
+../Core/Src/fal_flash_stm32f4.c(207): error: use of undeclared identifier 'stm32_onchip_flash'; did you mean 'stm32f2_onchip_flash'?
+    long addr = stm32_onchip_flash.addr + offset;
+                ^~~~~~~~~~~~~~~~~~
+                stm32f2_onchip_flash
+../Core/Inc\fal_cfg.h(20): note: 'stm32f2_onchip_flash' declared here
+extern const struct fal_flash_dev stm32f2_onchip_flash;
+                                  ^
+5 errors generated.
+compiling fal_flash_stm32f4.c...
+"FLASHDB_TEST\FLASHDB_TEST.axf" - 30 Error(s), 85 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM.CMSIS.5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
+                Keil.STM32F4xx_DFP.2.17.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/_FLASHDB_TEST
+  D:/software/Keil_v5/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  D:/software/Keil_v5/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.6.0
+      Include file:  CMSIS/Core/Include/tz_context.h
+Target not created.
+Build Time Elapsed:  00:00:05
+</pre>
+</body>
+</html>

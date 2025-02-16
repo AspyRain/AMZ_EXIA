@@ -595,6 +595,16 @@
           </GroupOption>
           <Files>
             <File>
+              <FileName>rtconfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\RT-Thread\rtconfig.h</FilePath>
+            </File>
+            <File>
+              <FileName>rtdef.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Middlewares\Third_Party\RealThread_RTOS\include\rtdef.h</FilePath>
+            </File>
+            <File>
               <FileName>context_rvds.S</FileName>
               <FileType>2</FileType>
               <FilePath>../Middlewares/Third_Party/RealThread_RTOS/libcpu/arm/cortex-m3/context_rvds.S</FilePath>
@@ -1589,15 +1599,60 @@
                 </FileArmAds>
               </FileOption>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>WS2812</GroupName>
+          <Files>
             <File>
-              <FileName>rtconfig.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\RT-Thread\rtconfig.h</FilePath>
+              <FileName>RGB.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\RGB.c</FilePath>
             </File>
             <File>
-              <FileName>rtdef.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\Middlewares\Third_Party\RealThread_RTOS\include\rtdef.h</FilePath>
+              <FileName>gn_controller.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\gn_controller.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>EasyFlash</GroupName>
+          <Files>
+            <File>
+              <FileName>easyflash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\easyflash.c</FilePath>
+            </File>
+            <File>
+              <FileName>ef_env.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\ef_env.c</FilePath>
+            </File>
+            <File>
+              <FileName>ef_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\ef_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>ef_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\ef_utils.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>cJson</GroupName>
+          <Files>
+            <File>
+              <FileName>jsonUtil.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\jsonUtil.c</FilePath>
+            </File>
+            <File>
+              <FileName>cJSON.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\cJSON.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1896,61 +1951,6 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>WS2812</GroupName>
-          <Files>
-            <File>
-              <FileName>RGB.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\RGB.c</FilePath>
-            </File>
-            <File>
-              <FileName>gn_controller.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\gn_controller.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>EasyFlash</GroupName>
-          <Files>
-            <File>
-              <FileName>easyflash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\easyflash.c</FilePath>
-            </File>
-            <File>
-              <FileName>ef_env.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\ef_env.c</FilePath>
-            </File>
-            <File>
-              <FileName>ef_port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\ef_port.c</FilePath>
-            </File>
-            <File>
-              <FileName>ef_utils.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\ef_utils.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>cJson</GroupName>
-          <Files>
-            <File>
-              <FileName>jsonUtil.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\jsonUtil.c</FilePath>
-            </File>
-            <File>
-              <FileName>cJSON.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Core\Src\cJSON.c</FilePath>
             </File>
           </Files>
         </Group>

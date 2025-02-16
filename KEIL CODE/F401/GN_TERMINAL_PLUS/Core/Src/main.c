@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -75,9 +75,9 @@ uint32_t color;
 /* USER CODE END 0 */
 
 /**
-  * @brief  The application entry point.
-  * @retval int
-  */
+ * @brief  The application entry point.
+ * @retval int
+ */
 int main(void)
 {
 
@@ -91,14 +91,14 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-	RGB_LED_Init(&rgb_test, 30, &htim1, TIM_CHANNEL_1);
+  RGB_LED_Init(&rgb_test, 30, &htim1, TIM_CHANNEL_1);
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+  uint32_t Reboot_Time = 0;
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -108,17 +108,35 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART6_UART_Init();
   /* USER CODE BEGIN 2 */
-	if(easyflash_init() == EF_NO_ERR)                         // Initialization Data Succeed
+  if (easyflash_init() == EF_NO_ERR) // Initialization Data Succeed
   {
-    rt_kprintf("easyflash初始化完成\n");
-    uint32_t color_set=0xFF0000;
-    ef_set_env_blob("wavy_color_1", &color_set, 4);
+    uint32_t color1 = 0xF0F0F0;
+    uint32_t color2 = 0x0000FF;
+    rt_kprintf("要保存的数据:\n");
+    print_hex_data(color1);
+    rt_kprintf("\n");
+    EfErrCode result = ef_set_env_blob("wavy_color_1", &color1,4);
+    if (result == EF_NO_ERR)
+    {
+      rt_kprintf("数据1保存成功!\n");
+      
+      result = ef_set_env_blob("wavy_color_2", &color2,4);
+      if (result == EF_NO_ERR)
+      {
+        rt_kprintf("数据2保存成功!\n");
+      }
+    }
+    else
+    {
+      rt_kprintf("数据保存失败!错误码:%d\n", result);
+    }
   }
-	HAL_UART_Receive_IT(&huart6, (uint8_t *)&usart3_c, 1);
+
+  HAL_UART_Receive_IT(&huart6, (uint8_t *)&usart3_c, 1);
 
   rt_thread_t rgb_task_tid = rt_thread_create("rgb_demo", /* ???? */
-                                                rgb_task, RT_NULL,
-                                                1024, 3, 10); //
+                                              rgb_task, RT_NULL,
+                                              1024, 3, 10); //
   if (rgb_task_tid != RT_NULL)
   {
     rt_thread_startup(rgb_task_tid);
@@ -128,12 +146,12 @@ int main(void)
   {
     rt_kprintf("usart thread is not started\n");
   }
-  processJsonThread = rt_thread_create("commandParsing", commandParsingTask, RT_NULL, 7216, 4, 10);
-  if (processJsonThread != RT_NULL)
-  {
-    // ????
-    rt_thread_startup(processJsonThread);
-  }
+  // processJsonThread = rt_thread_create("commandParsing", commandParsingTask, RT_NULL, 7216, 4, 10);
+  // if (processJsonThread != RT_NULL)
+  // {
+  //   // ????
+  //   rt_thread_startup(processJsonThread);
+  // }
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -148,22 +166,22 @@ int main(void)
 }
 
 /**
-  * @brief System Clock Configuration
-  * @retval None
-  */
+ * @brief System Clock Configuration
+ * @retval None
+ */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
   /** Configure the main internal regulator output voltage
-  */
+   */
   __HAL_RCC_PWR_CLK_ENABLE();
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
 
   /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */
+   * in the RCC_OscInitTypeDef structure.
+   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
@@ -179,9 +197,8 @@ void SystemClock_Config(void)
   }
 
   /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+   */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
@@ -194,8 +211,15 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void print_hex_data(uint32_t value) {
+    char buffer[10];
+    snprintf(buffer, sizeof(buffer), "%06X", value);
+    rt_kprintf("0x%s\n", buffer);
+}
+
 void rgb_task(void *promt)
 {
+  int times = 0;
   while (1)
   {
     switch (mode_id)
@@ -231,7 +255,7 @@ void rgb_task(void *promt)
       break;
     }
     }
-		rt_kprintf("thread running\n");
+    rt_kprintf("rgb 线程运行:%d次\n", ++times);
     rt_thread_mdelay(100);
 
     /* USER CODE BEGIN 3 */
@@ -247,7 +271,7 @@ void setColorToEnv(const char *colors, const char *envName)
   if (parsedItems == 1)
   {
     color_set = strtol(color_get, NULL, 16);
-    rt_kprintf("提取颜色0x%06X完成%s\n",color_set,envName);
+    rt_kprintf("提取颜色0x%06X完成%s\n", color_set, envName);
     ef_set_env_blob(envName, &color_set, 4);
   }
 }
@@ -292,36 +316,38 @@ void processColor(const Message *message)
 }
 void commandParsingTask(void *prmt)
 {
-  while(1){
-    if (command_able == 1){
-        rt_kprintf("??????%s\n", usart3_rx_buffer);
-  int parsedItems;
-  int oId;
-  char color_get[16];
-  char color_get_2[16];
-  uint32_t color_set = 0X000000;
-  Message message;
-  if (parseMessage(usart3_rx_buffer, &message))
+  while (1)
   {
-    rt_kprintf("Mode Type: %d\n", message.modeType);
-    rt_kprintf("Mode ID: %d, Colors: %s\n", message.mode.id, message.mode.colors);
-    rt_kprintf("gnMode ID: %d, Colors: %s\n", message.gnMode.id, message.gnMode.colors);
-    mode_id = message.mode.id;
-    processColor(&message);
-  }
-  else
-  {
-    rt_kprintf("Failed to parse the JSON string.\n");
-  }
+    if (command_able == 1)
+    {
+      rt_kprintf("??????%s\n", usart3_rx_buffer);
+      int parsedItems;
+      int oId;
+      char color_get[16];
+      char color_get_2[16];
+      uint32_t color_set = 0X000000;
+      Message message;
+      if (parseMessage(usart3_rx_buffer, &message))
+      {
+        rt_kprintf("Mode Type: %d\n", message.modeType);
+        rt_kprintf("Mode ID: %d, Colors: %s\n", message.mode.id, message.mode.colors);
+        rt_kprintf("gnMode ID: %d, Colors: %s\n", message.gnMode.id, message.gnMode.colors);
+        mode_id = message.mode.id;
+        processColor(&message);
+      }
+      else
+      {
+        rt_kprintf("Failed to parse the JSON string.\n");
+      }
 
-  // Free allocated memory
-  free(message.mode.colors);
-  free(message.gnMode.colors);
-  command_able = 0;
+      // Free allocated memory
+      free(message.mode.colors);
+      free(message.gnMode.colors);
+      command_able = 0;
     }
-    else rt_thread_mdelay(10);
+    else
+      rt_thread_mdelay(10);
   }
-  
 }
 void clearUsart()
 {
@@ -331,19 +357,20 @@ void clearUsart()
 /* USER CODE END 4 */
 
 /**
-  * @brief  Period elapsed callback in non blocking mode
-  * @note   This function is called  when TIM3 interrupt took place, inside
-  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
-  * a global variable "uwTick" used as application time base.
-  * @param  htim : TIM handle
-  * @retval None
-  */
+ * @brief  Period elapsed callback in non blocking mode
+ * @note   This function is called  when TIM3 interrupt took place, inside
+ * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+ * a global variable "uwTick" used as application time base.
+ * @param  htim : TIM handle
+ * @retval None
+ */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
 
   /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM3) {
+  if (htim->Instance == TIM3)
+  {
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
@@ -352,9 +379,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 }
 
 /**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
+ * @brief  This function is executed in case of error occurrence.
+ * @retval None
+ */
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
@@ -366,14 +393,14 @@ void Error_Handler(void)
   /* USER CODE END Error_Handler_Debug */
 }
 
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
+ * @brief  Reports the name of the source file and the source line number
+ *         where the assert_param error has occurred.
+ * @param  file: pointer to the source file name
+ * @param  line: assert_param error line source number
+ * @retval None
+ */
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */

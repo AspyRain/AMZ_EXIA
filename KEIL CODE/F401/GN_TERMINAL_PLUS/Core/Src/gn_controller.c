@@ -77,8 +77,8 @@ void wavy_one(RGB_LED *rgb_led)
 
 void wavy_two(RGB_LED *rgb_led)
 {
-    uint32_t wavy_color_1 = 0X00FF00;
-    uint32_t wavy_color_2 = 0XFF00FF;
+    uint32_t wavy_color_1;
+    uint32_t wavy_color_2;
     int step_1[] = {CHEST};
     int step_2[] = {ARM};
     int step_3[] = {LEG, EYE};
@@ -86,7 +86,7 @@ void wavy_two(RGB_LED *rgb_led)
 
     ef_get_env_blob("wavy_color_1", &wavy_color_1, 4, NULL);
     ef_get_env_blob("wavy_color_2", &wavy_color_2, 4, NULL);
-
+    rt_kprintf("读取出color1:%lu,color2:%lu\n",wavy_color_1,wavy_color_2);
     colorGradient(rgb_led, 0X000000, wavy_color_1, 200, step_1, 1);
     colorGradient(rgb_led, 0X000000, wavy_color_1, 200, step_2, 1);
     colorGradient(rgb_led, 0X000000, wavy_color_1, 200, step_3, 2);

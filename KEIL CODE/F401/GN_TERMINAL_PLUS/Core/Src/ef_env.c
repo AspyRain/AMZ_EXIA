@@ -28,7 +28,7 @@
 
 #include <string.h>
 #include <easyflash.h>
-
+#include <rtthread.h>
 #if defined(EF_USING_ENV) && !defined(EF_ENV_USING_LEGACY_MODE)
 
 #ifndef EF_WRITE_GRAN
@@ -266,6 +266,8 @@ static size_t get_status(uint8_t status_table[], size_t status_num)
 
 static EfErrCode write_status(uint32_t addr, uint8_t status_table[], size_t status_num, size_t status_index)
 {
+    rt_kprintf("write_status\n");
+    rt_kprintf("write_status\n");
     EfErrCode result = EF_NO_ERR;
     size_t byte_index;
 
@@ -623,7 +625,7 @@ static EfErrCode read_sector_meta_data(uint32_t addr, sector_meta_data_t sector,
                 read_env(&env_meta);
                 if (!env_meta.crc_is_ok) {
                     if (env_meta.status != ENV_PRE_WRITE && env_meta.status!= ENV_ERR_HDR) {
-                        EF_INFO("Error: The ENV (@0x%08X) CRC32 check failed!\n", env_meta.addr.start);
+                        rt_kprintf("Error: The ENV (@0x%08X) CRC32 check failed!\n", env_meta.addr.start);
                         sector->remain = 0;
                         result = EF_READ_ERR;
                         break;
@@ -807,7 +809,7 @@ bool ef_get_env_obj(const char *key, env_node_obj_t env)
     bool find_ok = false;
 
     if (!init_ok) {
-        EF_INFO("ENV isn't initialize OK.\n");
+        rt_kprintf("ENV isn't initialize OK.\n");
         return 0;
     }
 
@@ -837,7 +839,7 @@ size_t ef_get_env_blob(const char *key, void *value_buf, size_t buf_len, size_t 
     size_t read_len = 0;
 
     if (!init_ok) {
-        EF_INFO("ENV isn't initialize OK.\n");
+        rt_kprintf("ENV isn't initialize OK.\n");
         return 0;
     }
 
@@ -873,7 +875,7 @@ char *ef_get_env(const char *key)
             value[get_size] = '\0';
             return value;
         } else {
-            EF_INFO("Warning: The ENV value isn't string. Could not be returned\n");
+            rt_kprintf("Warning: The ENV value isn't string. Could not be returned\n");
             return NULL;
         }
     }
@@ -898,7 +900,7 @@ size_t ef_read_env_value(env_node_obj_t env, uint8_t *value_buf, size_t buf_len)
     EF_ASSERT(value_buf);
 
     if (!init_ok) {
-        EF_INFO("ENV isn't initialize OK.\n");
+        rt_kprintf("ENV isn't initialize OK.\n");
         return 0;
     }
 
@@ -921,6 +923,7 @@ size_t ef_read_env_value(env_node_obj_t env, uint8_t *value_buf, size_t buf_len)
 }
 
 static EfErrCode write_env_hdr(uint32_t addr, env_hdr_data_t env_hdr) {
+    rt_kprintf("write_env_hdr\n");
     EfErrCode result = EF_NO_ERR;
     /* write the status will by write granularity */
     result = write_status(addr, env_hdr->status_table, ENV_STATUS_NUM, ENV_PRE_WRITE);
@@ -928,6 +931,7 @@ static EfErrCode write_env_hdr(uint32_t addr, env_hdr_data_t env_hdr) {
         return result;
     }
     /* write other header data */
+    rt_kprintf("write_env_hdr\n");
     result = ef_port_write(addr + ENV_MAGIC_OFFSET, &env_hdr->magic, sizeof(struct env_hdr_data) - ENV_MAGIC_OFFSET);
 
     return result;
@@ -935,6 +939,7 @@ static EfErrCode write_env_hdr(uint32_t addr, env_hdr_data_t env_hdr) {
 
 static EfErrCode format_sector(uint32_t addr, uint32_t combined_value)
 {
+
     EfErrCode result = EF_NO_ERR;
     struct sector_hdr_data sec_hdr;
 
@@ -950,6 +955,7 @@ static EfErrCode format_sector(uint32_t addr, uint32_t combined_value)
         sec_hdr.combined = combined_value;
         sec_hdr.reserved = 0xFFFFFFFF;
         /* save the header */
+
         result = ef_port_write(addr, (uint32_t *)&sec_hdr, sizeof(struct sector_hdr_data));
 
 #ifdef EF_ENV_USING_CACHE
@@ -1042,26 +1048,43 @@ static bool alloc_env_cb(sector_meta_data_t sector, void *arg1, void *arg2)
     return false;
 }
 
+
 static uint32_t alloc_env(sector_meta_data_t sector, size_t env_size)
 {
     uint32_t empty_env = FAILED_ADDR;
     size_t empty_sector = 0, using_sector = 0;
 
-    /* sector status statistics */
+    rt_kprintf("正在统计扇区状态...\n");
+
+    /* 统计扇区状态 */
     sector_iterator(sector, SECTOR_STORE_UNUSED, &empty_sector, &using_sector, sector_statistics_cb, false);
+    rt_kprintf("空闲扇区数：%lu，使用中扇区数：%lu\n", empty_sector, using_sector);
+
     if (using_sector > 0) {
-        /* alloc the ENV from the using status sector first */
+        rt_kprintf("从正在使用的扇区中分配环境变量...\n");
+
+        /* 从正在使用的扇区中分配环境变量 */
         sector_iterator(sector, SECTOR_STORE_USING, &env_size, &empty_env, alloc_env_cb, true);
     }
+
     if (empty_sector > 0 && empty_env == FAILED_ADDR) {
+        rt_kprintf("尝试从空闲扇区中分配环境变量...\n");
+
         if (empty_sector > EF_GC_EMPTY_SEC_THRESHOLD || gc_request) {
+            rt_kprintf("空闲扇区数大于阈值或已请求垃圾回收，从空闲扇区分配...\n");
+
+            /* 从空闲扇区分配 */
             sector_iterator(sector, SECTOR_STORE_EMPTY, &env_size, &empty_env, alloc_env_cb, true);
         } else {
-            /* no space for new ENV now will GC and retry */
-            EF_DEBUG("Trigger a GC check after alloc ENV failed.\n");
+            rt_kprintf("没有足够的空间分配新的环境变量，将进行垃圾回收并重试...\n");
+
+            /* 触发垃圾回收检查 */
+            EF_DEBUG("触发垃圾回收检查后分配环境变量失败。\n");
             gc_request = true;
         }
     }
+
+    rt_kprintf("分配环境变量的结果地址：0x%08X\n", empty_env);
 
     return empty_env;
 }
@@ -1126,6 +1149,7 @@ static EfErrCode del_env(const char *key, env_node_obj_t old_env, bool complete_
  */
 static EfErrCode move_env(env_node_obj_t env)
 {
+    rt_kprintf("move_env\n");
     EfErrCode result = EF_NO_ERR;
     uint8_t status_table[ENV_STATUS_TABLE_SIZE];
     uint32_t env_addr;
@@ -1194,12 +1218,18 @@ static uint32_t new_env(sector_meta_data_t sector, size_t env_size)
 
 __retry:
 
-    if ((empty_env = alloc_env(sector, env_size)) == FAILED_ADDR && gc_request && !already_gc) {
-        EF_DEBUG("Warning: Alloc an ENV (size %d) failed when new ENV. Now will GC then retry.\n", env_size);
+    rt_kprintf("尝试分配新环境变量，大小为 %d 字节...\n", env_size);
+
+    empty_env = alloc_env(sector, env_size);
+
+    if (empty_env == FAILED_ADDR && gc_request && !already_gc) {
+        rt_kprintf("警告：分配大小为 %d 的环境变量失败。现在将进行垃圾回收并重试。\n", env_size);
         gc_collect();
         already_gc = true;
         goto __retry;
     }
+
+    rt_kprintf("分配环境变量成功，地址为 0x%08X\n", empty_env);
 
     return empty_env;
 }
@@ -1286,16 +1316,38 @@ static EfErrCode align_write(uint32_t addr, const uint32_t *buf, size_t size)
 #endif
 
     memset(align_data, 0xFF, align_data_size);
-    align_remain = EF_WG_ALIGN_DOWN(size);//use align_remain temporary to save aligned size.
 
-    if(align_remain > 0){//it may be 0 in this function.
+    // 输出函数入口信息
+    rt_kprintf("align_write: addr=0x%08X, size=%lu\n", addr, size);
+
+    // 计算对齐剩余大小
+    align_remain = EF_WG_ALIGN_DOWN(size);
+    rt_kprintf("align_remain (aligned): %lu\n", align_remain);
+
+    // 对齐部分的写入
+    if (align_remain > 0) {
+        rt_kprintf("写入对齐部分: addr=0x%08X, size=%lu\n", addr, align_remain);
         result = ef_port_write(addr, buf, align_remain);
+        if (result != EF_NO_ERR) {
+            rt_kprintf("对齐部分写入失败！\n");
+            return result;
+        }
     }
 
+    // 计算未对齐部分的大小
     align_remain = size - align_remain;
-    if (result == EF_NO_ERR && align_remain) {
-        memcpy(align_data, (uint8_t *)buf + EF_WG_ALIGN_DOWN(size), align_remain);
-        result = ef_port_write(addr + EF_WG_ALIGN_DOWN(size), (uint32_t *) align_data, align_data_size);
+    rt_kprintf("align_remain (unaligned): %lu\n", align_remain);
+
+    // 未对齐部分的写入
+    if (align_remain > 0 && result == EF_NO_ERR) {
+        rt_kprintf("复制未对齐部分到 align_data\n");
+        memcpy(align_data, (uint8_t *)buf + align_remain, align_remain);
+        rt_kprintf("写入未对齐部分: addr=0x%08X, size=%lu\n", addr + align_remain, align_remain);
+        result = ef_port_write(addr + align_remain, (uint32_t *)align_data, align_remain);
+        if (result != EF_NO_ERR) {
+            rt_kprintf("未对齐部分写入失败！\n");
+            return result;
+        }
     }
 
     return result;
@@ -1307,9 +1359,8 @@ static EfErrCode create_env_blob(sector_meta_data_t sector, const char *key, con
     struct env_hdr_data env_hdr;
     bool is_full = false;
     uint32_t env_addr = sector->empty_env;
-
     if (strlen(key) > EF_ENV_NAME_MAX) {
-        EF_INFO("Error: The ENV name length is more than %d\n", EF_ENV_NAME_MAX);
+        rt_kprintf("Error: The ENV name length is more than %d\n", EF_ENV_NAME_MAX);
         return EF_ENV_NAME_ERR;
     }
 
@@ -1320,7 +1371,8 @@ static EfErrCode create_env_blob(sector_meta_data_t sector, const char *key, con
     env_hdr.len = ENV_HDR_DATA_SIZE + EF_WG_ALIGN(env_hdr.name_len) + EF_WG_ALIGN(env_hdr.value_len);
 
     if (env_hdr.len > SECTOR_SIZE - SECTOR_HDR_DATA_SIZE) {
-        EF_INFO("Error: The ENV size is too big\n");
+        rt_kprintf("Error: The ENV size is too big\n");
+        
         return EF_ENV_FULL;
     }
 
@@ -1375,6 +1427,7 @@ static EfErrCode create_env_blob(sector_meta_data_t sector, const char *key, con
             gc_request = true;
         }
     } else {
+        rt_kprintf("full!!\n");
         result = EF_ENV_FULL;
     }
 
@@ -1393,7 +1446,7 @@ EfErrCode ef_del_env(const char *key)
     EfErrCode result = EF_NO_ERR;
 
     if (!init_ok) {
-        EF_INFO("Error: ENV isn't initialize OK.\n");
+        rt_kprintf("Error: ENV isn't initialize OK.\n");
         return EF_ENV_INIT_FAILED;
     }
 
@@ -1429,12 +1482,13 @@ static EfErrCode set_env(const char *key, const void *value_buf, size_t buf_len)
     static struct env_node_obj env;
     static struct sector_meta_data sector;
     bool env_is_found = false;
-
+    rt_kprintf("key:%s\n",key);
     if (value_buf == NULL) {
         result = del_env(key, NULL, true);
     } else {
         /* make sure the flash has enough space */
         if (new_env_by_kv(&sector, strlen(key), buf_len) == FAILED_ADDR) {
+            rt_kprintf("EF_ENV_FULL!\n");
             return EF_ENV_FULL;
         }
         env_is_found = find_env(key, &env);
@@ -1460,7 +1514,7 @@ static EfErrCode set_env(const char *key, const void *value_buf, size_t buf_len)
 }
 
 /**
- * Set a blob ENV. If it value is NULL, delete it.
+ * Set a blob ENV. If it value is NULL, delete it.l;ojlji
  * If not find it in flash, then create it.
  *
  * @param key ENV name
@@ -1472,10 +1526,8 @@ static EfErrCode set_env(const char *key, const void *value_buf, size_t buf_len)
 EfErrCode ef_set_env_blob(const char *key, const void *value_buf, size_t buf_len)
 {
     EfErrCode result = EF_NO_ERR;
-
-
     if (!init_ok) {
-        EF_INFO("ENV isn't initialize OK.\n");
+        rt_kprintf("ENV isn't initialize OK.\n");
         return EF_ENV_INIT_FAILED;
     }
 
@@ -1634,7 +1686,7 @@ void ef_print_env(void)
     size_t using_size = 0;
 
     if (!init_ok) {
-        EF_INFO("ENV isn't initialize OK.\n");
+        rt_kprintf("ENV isn't initialize OK.\n");
         return;
     }
 
@@ -1695,7 +1747,7 @@ static bool check_sec_hdr_cb(sector_meta_data_t sector, void *arg1, void *arg2)
     if (!sector->check_ok) {
         size_t *failed_count = arg1;
 
-        EF_INFO("Warning: Sector header check failed. Format this sector (0x%08x).\n", sector->addr);
+        rt_kprintf("Warning: Sector header check failed. Format this sector (0x%08x).\n", sector->addr);
         (*failed_count) ++;
         format_sector(sector->addr, SECTOR_NOT_COMBINED);
     }
@@ -1719,7 +1771,7 @@ static bool check_and_recovery_env_cb(env_node_obj_t env, void *arg1, void *arg2
 {
     /* recovery the prepare deleted ENV */
     if (env->crc_is_ok && env->status == ENV_PRE_DELETE) {
-        EF_INFO("Found an ENV (%.*s) which has changed value failed. Now will recovery it.\n", env->name_len, env->name);
+        rt_kprintf("Found an ENV (%.*s) which has changed value failed. Now will recovery it.\n", env->name_len, env->name);
         /* recovery the old ENV */
         if (move_env(env) == EF_NO_ERR) {
             EF_DEBUG("Recovery the ENV successful.\n");
@@ -1755,7 +1807,7 @@ EfErrCode ef_load_env(void)
     sector_iterator(&sector, SECTOR_STORE_UNUSED, &check_failed_count, NULL, check_sec_hdr_cb, false);
     /* all sector header check failed */
     if (check_failed_count == SECTOR_NUM) {
-        EF_INFO("Warning: All sector header check failed. Set it to default.\n");
+        rt_kprintf("Warning: All sector header check failed. Set it to default.\n");
         ef_env_set_default();
     }
 

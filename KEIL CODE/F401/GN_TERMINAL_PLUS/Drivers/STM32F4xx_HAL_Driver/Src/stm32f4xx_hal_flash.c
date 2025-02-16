@@ -151,6 +151,7 @@ HAL_StatusTypeDef FLASH_WaitForLastOperation(uint32_t Timeout);
   *
   * @retval HAL_StatusTypeDef HAL Status
   */
+ #include <rtthread.h>
 HAL_StatusTypeDef HAL_FLASH_Program(uint32_t TypeProgram, uint32_t Address, uint64_t Data)
 {
   HAL_StatusTypeDef status = HAL_ERROR;
@@ -160,10 +161,10 @@ HAL_StatusTypeDef HAL_FLASH_Program(uint32_t TypeProgram, uint32_t Address, uint
 
   /* Check the parameters */
   assert_param(IS_FLASH_TYPEPROGRAM(TypeProgram));
-
+  
   /* Wait for last operation to be completed */
   status = FLASH_WaitForLastOperation((uint32_t)FLASH_TIMEOUT_VALUE);
-
+  rt_kprintf("status:%d\n",status);
   if (status == HAL_OK)
   {
     if (TypeProgram == FLASH_TYPEPROGRAM_BYTE)
@@ -189,7 +190,7 @@ HAL_StatusTypeDef HAL_FLASH_Program(uint32_t TypeProgram, uint32_t Address, uint
 
     /* Wait for last operation to be completed */
     status = FLASH_WaitForLastOperation((uint32_t)FLASH_TIMEOUT_VALUE);
-
+    rt_kprintf("status:%d\n",status);
     /* If the program operation is completed, disable the PG Bit */
     FLASH->CR &= (~FLASH_CR_PG);
   }

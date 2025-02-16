@@ -56,6 +56,7 @@ void Error_Handler(void);
 void rgb_task(void *promt);
 void commandParsingTask(void *prmt);
 void clearUsart();
+void print_hex_data(uint32_t value);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
