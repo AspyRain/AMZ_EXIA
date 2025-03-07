@@ -160,6 +160,8 @@ void parseModeJSON(cJSON *root, const char *envs[], int size) {
         ef_get_env_blob(envs[i], &color, 4, NULL);
         char color_str[11];
         snprintf(color_str, sizeof(color_str), "0x%06X", color);
+        rt_kprintf(color_str);
+        rt_kprintf("\n");
         cJSON_AddStringToObject(root, envs[i], color_str);
     }
 }

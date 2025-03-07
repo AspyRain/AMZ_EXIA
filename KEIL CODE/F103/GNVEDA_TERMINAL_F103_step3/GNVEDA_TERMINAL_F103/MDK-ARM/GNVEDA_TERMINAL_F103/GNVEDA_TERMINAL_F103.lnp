@@ -8,6 +8,7 @@
 "gnveda_terminal_f103\stm32f1xx_it.o"
 "gnveda_terminal_f103\stm32f1xx_hal_msp.o"
 "gnveda_terminal_f103\stm32f1xx_hal_timebase_tim.o"
+"gnveda_terminal_f103\global.o"
 "gnveda_terminal_f103\stm32f1xx_hal_gpio_ex.o"
 "gnveda_terminal_f103\stm32f1xx_hal.o"
 "gnveda_terminal_f103\stm32f1xx_hal_rcc.o"

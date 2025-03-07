@@ -31,4 +31,5 @@ gnveda_terminal_f103/ef_port.o: ..\Core\Src\ef_port.c \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
+  ..\Core\Inc\cJSON.h \
   D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdarg.h

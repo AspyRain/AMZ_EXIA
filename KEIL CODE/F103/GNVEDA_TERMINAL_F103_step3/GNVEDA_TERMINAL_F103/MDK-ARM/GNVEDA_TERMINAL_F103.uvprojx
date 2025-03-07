@@ -486,6 +486,11 @@
               <FileType>1</FileType>
               <FilePath>../Core/Src/stm32f1xx_hal_timebase_tim.c</FilePath>
             </File>
+            <File>
+              <FileName>global.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\global.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

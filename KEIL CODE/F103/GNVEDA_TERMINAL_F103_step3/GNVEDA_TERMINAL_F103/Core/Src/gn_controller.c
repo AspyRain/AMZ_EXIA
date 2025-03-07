@@ -1,5 +1,5 @@
 #include "gn_controller.h"
-
+#include "global.h"
 #define RED           0xFF0000
 #define ORANGE        0xFFA500
 #define YELLOW        0xFFFF00
@@ -34,11 +34,9 @@ void normal(RGB_LED *rgb_led)
 {   
     resetColor(rgb_led,0,0);
     int body_indexes[] = {LEG, CHEST, EYE, HEAD, ARM};
-    uint32_t normal_color;
-    ef_get_env_blob("normal_color", &normal_color, 4, NULL);
-    print_hex_data(normal_color);
+    print_hex_data(basic_color);
     for (int i=0;i<5;i++){
-        WS2812_Set_Color(rgb_led,normal_color,body_indexes[i]);
+        WS2812_Set_Color(rgb_led,basic_color,body_indexes[i]);
         //WS2812_Set_Color(rgb_led,normal_color,body_indexes[i]);
         WS2812_Show(rgb_led);
     }
@@ -49,8 +47,6 @@ void chest_breathing(RGB_LED *rgb_led)
 {
     resetColor(rgb_led,0,0);
     int chest_indexes[] = {CHEST};
-    uint32_t chest_color ;
-    ef_get_env_blob("chest_color", &chest_color, 4, NULL);
     print_hex_data(chest_color);
     colorGradient(rgb_led, 0X000000, chest_color, 2000, chest_indexes, 1);
     colorGradient(rgb_led, chest_color, 0X000000, 2000, chest_indexes, 1);
@@ -61,8 +57,6 @@ void all_body_breathing(RGB_LED *rgb_led)
 {
     resetColor(rgb_led,0,0);
     int body_indexes[] = {LEG, CHEST, EYE, HEAD, ARM};
-    uint32_t body_color ;
-    ef_get_env_blob("body_color", &body_color, 4, NULL);
     print_hex_data(body_color);
     colorGradient(rgb_led, 0X000000, body_color, 2000, body_indexes, 5);
     colorGradient(rgb_led, body_color, 0X000000, 2000, body_indexes, 5);
@@ -72,12 +66,10 @@ void all_body_breathing(RGB_LED *rgb_led)
 void wavy_one(RGB_LED *rgb_led)
 {
     resetColor(rgb_led,0,0);
-    uint32_t wavy_color_1 ;
     int step_1[] = {CHEST};
     int step_2[] = {ARM};
     int step_3[] = {LEG, EYE};
     int step_4[] = {HEAD};
-    ef_get_env_blob("wavy_color_1", &wavy_color_1, 4, NULL);
     print_hex_data(wavy_color_1);
     colorGradient(rgb_led, 0X000000, wavy_color_1, 200, step_1, 1);
     colorGradient(rgb_led, 0X000000, wavy_color_1, 200, step_2, 1);
@@ -94,17 +86,11 @@ void wavy_one(RGB_LED *rgb_led)
 void wavy_two(RGB_LED *rgb_led)
 {
     resetColor(rgb_led,0,0);
-    uint32_t wavy_color_1;
-    uint32_t wavy_color_2;
     int step_1[] = {CHEST};
     int step_2[] = {ARM};
     int step_3[] = {LEG, EYE};
     int step_4[] = {HEAD};
-    ef_get_env_blob("wavy_color_1", &wavy_color_1, 4, NULL);
-    ef_get_env_blob("wavy_color_2", &wavy_color_2, 4, NULL);
-    ef_get_env_blob("wavy_color_1", &wavy_color_1, 4, NULL);
     print_hex_data(wavy_color_1);
-    ef_get_env_blob("wavy_color_2", &wavy_color_2, 4, NULL);
     print_hex_data(wavy_color_2);
     colorGradient(rgb_led, 0X000000, wavy_color_1, 200, step_1, 1);
     colorGradient(rgb_led, 0X000000, wavy_color_1, 200, step_2, 1);

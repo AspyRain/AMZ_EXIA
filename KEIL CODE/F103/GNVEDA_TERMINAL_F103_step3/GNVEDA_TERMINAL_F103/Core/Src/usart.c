@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "usart.h"
-
+#include <string.h>
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
@@ -194,18 +194,28 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 void sendData(UART_HandleTypeDef *huart, const char *str) {
-    size_t len = strlen(str);
-    char *str_with_newline = (char *)malloc(len + 2);  // +1 for '\n', +1 for null terminator
-    if (str_with_newline != NULL) {
-        strcpy(str_with_newline, str);
-        str_with_newline[len] = '\n';
-        str_with_newline[len + 1] = '\0';
+  if (str == NULL || huart == NULL) {
+      return;
+  }
 
-        HAL_UART_Transmit(huart, (uint8_t *)str_with_newline, len + 1, HAL_MAX_DELAY);
+  size_t len = strlen(str);
+  if (len == 0) {
+      return;
+  }
 
-        free(str_with_newline);
-    } else {
-        rt_kprintf("内存分配失败！\n");
-    }
+  char buffer[256];  // 使用栈内存，减少动态分配，提高效率
+  if (len < sizeof(buffer) - 2) {
+      // 使用局部变量，避免动态分配
+      strcpy(buffer, str);
+      buffer[len] = '\n';
+      buffer[len + 1] = '\0';
+      HAL_UART_Transmit(huart, (uint8_t *)buffer, len + 1, HAL_MAX_DELAY);
+  } else {
+      // 长度过长时，分段发送，避免缓冲区溢出
+      HAL_UART_Transmit(huart, (uint8_t *)str, len, HAL_MAX_DELAY);
+      char newline = '\n';
+      HAL_UART_Transmit(huart, (uint8_t *)&newline, 1, HAL_MAX_DELAY);
+  }
 }
+
 /* USER CODE END 1 */

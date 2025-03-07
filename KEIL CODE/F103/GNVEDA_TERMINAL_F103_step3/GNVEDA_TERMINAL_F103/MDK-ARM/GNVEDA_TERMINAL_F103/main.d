@@ -28,8 +28,8 @@ gnveda_terminal_f103/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
-  ..\Core\Inc\dma.h ..\Core\Inc\tim.h ..\Core\Inc\usart.h \
-  ..\Core\Inc\gpio.h \
+  ..\Core\Inc\cJSON.h ..\Core\Inc\dma.h ..\Core\Inc\tim.h \
+  ..\Core\Inc\usart.h ..\Core\Inc\gpio.h \
   ..\Middlewares\Third_Party\RealThread_RTOS\include\rtthread.h \
   ..\RT-Thread\rtconfig.h \
   ..\Middlewares\Third_Party\RealThread_RTOS\include\rtdebug.h \
@@ -44,4 +44,5 @@ gnveda_terminal_f103/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\string.h \
   D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
   D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  ..\Core\Inc\gn_controller.h ..\Core\Inc\jsonUtil.h ..\Core\Inc\cJSON.h
+  ..\Core\Inc\gn_controller.h ..\Core\Inc\jsonUtil.h \
+  ..\Core\Inc\global.h

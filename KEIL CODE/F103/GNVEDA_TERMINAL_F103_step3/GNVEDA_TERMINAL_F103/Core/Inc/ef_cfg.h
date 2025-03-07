@@ -35,7 +35,8 @@
 #define STM32_FLASH_BASE    0x08000000UL     /* STM32 Flash的起始地址 */
 
 
-#define EF_START_ADDR          (STM32_FLASH_BASE+STM_SECTOR_SIZE*64)   /* 必须定义的一个值 */
+#define EF_START_ADDR          (STM32_FLASH_BASE + STM_SECTOR_SIZE * 80)   /* 向后移动 16 个扇区 */
+
 
 /* ENV区域的大小。至少需要一个空扇区用于垃圾回收。所以它的定义必须大于等于2个扇区大小。 */
 #define ENV_AREA_SIZE          (2 * EF_ERASE_MIN_SIZE)  /* 如果使用ENV，则必须定义一个值 */

@@ -25,37 +25,51 @@
  * Function: Portable interface for each platform.
  * Created on: 2015-01-16
  */
- 
+
 #include <easyflash.h>
 #include <stdarg.h>
 #include "stm32f1xx_hal.h"
+const uint32_t red = 0x00FF00;
+const uint32_t green = 0xFF0000;
+const uint32_t blue = 0x0000FF;
 
- uint32_t red = 0X00FF00;
- uint32_t green = 0XFF0000;
- uint32_t blue = 0X0000FF;
-/* default environment variables set for user */
+/* 默认环境变量集 */
+// static const ef_env default_env_set[] = {
+//     {"iap_need_copy_app", "0"},
+//     {"iap_copy_app_size", "0"},
+//     {"stop_in_bootloader", "0"},
+//     {"device_id", "1"},
+//     {"boot_times", "0"},
+//     {"message", "0"},
+//     {"basic_color", green},
+//     {"chest_color", green},
+//     {"body_color", green},
+//     {"wavy_color_1", green},
+//     {"wavy_color_2", red},
+//     {"circle_color_1", green},
+//     {"circle_color_2", green},
+//     {"center_color", green},
+//     {"wings_color", blue},
+//     {"bird_color", green},
+//     {"mode_1", "0"},
+//     {"reboot time", "\0"} // Used to store startup times
+
+// };
+
 static const ef_env default_env_set[] = {
-		{"iap_need_copy_app","0"},
-		{"iap_copy_app_size","0"},
-		{"stop_in_bootloader","0"},
-		{"device_id","1"},
-		{"boot_times","0"},
-		{"message","0"},
-        {"normal_color", &green , sizeof(green)},
-        {"chest_color", &green , sizeof(green)},
-        {"body_color", &green , sizeof(green)},
-        {"wavy_color_1", &green , sizeof(green)},
-        {"wavy_color_2", &red , sizeof(red)},
-        {"circle_color_1",&green,sizeof(green)},
-        {"circle_color_2",&green,sizeof(green)},
-        {"center_color",&green,sizeof(green)},
-        {"wings_color",&blue,sizeof(blue)},
-        {"bird_color",&green,sizeof(green)},
-        {"mode_1","0",0},
-		{"reboot time", "\0"}		//Used to store startup times
-
+    {"basic_color", green},
+    {"chest_color", green},
+    {"body_color", green},
+    {"wavy_color_1", green},
+    {"wavy_color_2", red},
+    {"circle_color_1", green},
+    {"circle_color_2", green},
+    {"center_color", green},
+    {"wings_color", blue},
+    {"bird_color", green},
+    {"boot_times", "0"}
 };
- 
+
 /**
  * Flash port for hardware initialize.
  *
@@ -64,15 +78,16 @@ static const ef_env default_env_set[] = {
  *
  * @return result
  */
-EfErrCode ef_port_init(ef_env const **default_env, size_t *default_env_size) {
+EfErrCode ef_port_init(ef_env const **default_env, size_t *default_env_size)
+{
     EfErrCode result = EF_NO_ERR;
- 
+
     *default_env = default_env_set;
     *default_env_size = sizeof(default_env_set) / sizeof(default_env_set[0]);
- 
+
     return result;
 }
- 
+
 /**
  * Read data from flash.
  * @note This operation's units is word.
@@ -83,18 +98,20 @@ EfErrCode ef_port_init(ef_env const **default_env, size_t *default_env_size) {
  *
  * @return result
  */
-EfErrCode ef_port_read(uint32_t addr, uint32_t *buf, size_t size) {
+EfErrCode ef_port_read(uint32_t addr, uint32_t *buf, size_t size)
+{
     EfErrCode result = EF_NO_ERR;
- 
+
     /* You can add your code under here. */
-		uint8_t *buf_8 = (uint8_t *)buf;
+    uint8_t *buf_8 = (uint8_t *)buf;
     size_t i;
-		for (i = 0; i < size; i++, addr ++, buf_8++) {
-        *buf_8 = *(uint8_t *) addr;
+    for (i = 0; i < size; i++, addr++, buf_8++)
+    {
+        *buf_8 = *(uint8_t *)addr;
     }
     return result;
 }
- 
+
 /**
  * Erase data on flash.
  * @note This operation is irreversible.
@@ -105,28 +122,29 @@ EfErrCode ef_port_read(uint32_t addr, uint32_t *buf, size_t size) {
  *
  * @return result
  */
-EfErrCode ef_port_erase(uint32_t addr, size_t size) {
+EfErrCode ef_port_erase(uint32_t addr, size_t size)
+{
     EfErrCode result = EF_NO_ERR;
- 
+
     /* make sure the start address is a multiple of EF_ERASE_MIN_SIZE */
     EF_ASSERT(addr % EF_ERASE_MIN_SIZE == 0);
- 
+
     /* You can add your code under here. */
-		HAL_FLASH_Unlock();
-		
-		__HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_BSY | FLASH_FLAG_EOP | FLASH_FLAG_PGERR | FLASH_FLAG_WRPERR);
-	
+    HAL_FLASH_Unlock();
+
+    __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_BSY | FLASH_FLAG_EOP | FLASH_FLAG_PGERR | FLASH_FLAG_WRPERR);
+
     /* Erase FLASH*/
     FLASH_EraseInitTypeDef FlashSet;
     FlashSet.TypeErase = FLASH_TYPEERASE_PAGES;
     FlashSet.PageAddress = addr;
-    FlashSet.NbPages = (size + EF_ERASE_MIN_SIZE -1)/ EF_ERASE_MIN_SIZE;
- 
+    FlashSet.NbPages = (size + EF_ERASE_MIN_SIZE - 1) / EF_ERASE_MIN_SIZE;
+
     /*Set PageError and call the erase function*/
     uint32_t PageError = 0;
     if (HAL_FLASHEx_Erase(&FlashSet, &PageError) != HAL_OK)
-			result = EF_ERASE_ERR;
- 
+        result = EF_ERASE_ERR;
+
     HAL_FLASH_Lock();
     return result;
 }
@@ -141,21 +159,24 @@ EfErrCode ef_port_erase(uint32_t addr, size_t size) {
  *
  * @return result
  */
-EfErrCode ef_port_write(uint32_t addr, const uint32_t *buf, size_t size) {
+EfErrCode ef_port_write(uint32_t addr, const uint32_t *buf, size_t size)
+{
     EfErrCode result = EF_NO_ERR;
-    
+
     /* You can add your code under here. */
-		size_t i;
+    size_t i;
     uint32_t read_data;
- 
+
     HAL_FLASH_Unlock();
     __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_BSY | FLASH_FLAG_EOP | FLASH_FLAG_PGERR | FLASH_FLAG_WRPERR);
-    for (i = 0; i < size; i += 4, buf++, addr += 4) {
+    for (i = 0; i < size; i += 4, buf++, addr += 4)
+    {
         /* write data */
         HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, addr, (uint64_t)*buf);
         read_data = *(uint32_t *)addr;
         /* check data */
-        if (read_data != *buf) {
+        if (read_data != *buf)
+        {
             result = EF_WRITE_ERR;
             break;
         }
@@ -163,26 +184,25 @@ EfErrCode ef_port_write(uint32_t addr, const uint32_t *buf, size_t size) {
     HAL_FLASH_Lock();
     return result;
 }
- 
+
 /**
  * lock the ENV ram cache
  */
-void ef_port_env_lock(void) {
-    
+void ef_port_env_lock(void)
+{
+
     /* You can add your code under here. */
-    
 }
- 
+
 /**
  * unlock the ENV ram cache
  */
-void ef_port_env_unlock(void) {
-    
+void ef_port_env_unlock(void)
+{
+
     /* You can add your code under here. */
-    
 }
- 
- 
+
 /**
  * This function is print flash debug info.
  *
@@ -192,37 +212,38 @@ void ef_port_env_unlock(void) {
  * @param ... args
  *
  */
-void ef_log_debug(const char *file, const long line, const char *format, ...) {
- 
+void ef_log_debug(const char *file, const long line, const char *format, ...)
+{
+
 #ifdef PRINT_DEBUG
- 
+
     va_list args;
- 
+
     /* args point to the first variable parameter */
     va_start(args, format);
- 
+
     /* You can add your code under here. */
-    
+
     va_end(args);
- 
+
 #endif
- 
 }
- 
+
 /**
  * This function is print flash routine info.
  *
  * @param format output format
  * @param ... args
  */
-void ef_log_info(const char *format, ...) {
+void ef_log_info(const char *format, ...)
+{
     va_list args;
- 
+
     /* args point to the first variable parameter */
     va_start(args, format);
- 
+
     /* You can add your code under here. */
-    
+
     va_end(args);
 }
 /**
@@ -231,13 +252,14 @@ void ef_log_info(const char *format, ...) {
  * @param format output format
  * @param ... args
  */
-void ef_print(const char *format, ...) {
+void ef_print(const char *format, ...)
+{
     va_list args;
- 
+
     /* args point to the first variable parameter */
     va_start(args, format);
- 
+
     /* You can add your code under here. */
-    
+
     va_end(args);
 }

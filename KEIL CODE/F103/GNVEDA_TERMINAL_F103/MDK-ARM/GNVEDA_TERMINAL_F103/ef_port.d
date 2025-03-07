@@ -1,8 +1,8 @@
 gnveda_terminal_f103/ef_port.o: ..\Core\Src\ef_port.c \
   ..\Core\Inc\easyflash.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stddef.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   ..\Core\Inc\ef_cfg.h ..\Core\Inc\ef_def.h ..\Core\Inc\main.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
   ..\Core\Inc\stm32f1xx_hal_conf.h \
@@ -14,8 +14,8 @@ gnveda_terminal_f103/ef_port.o: ..\Core\Src\ef_port.c \
   ..\Drivers\CMSIS\Include\cmsis_version.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
   ..\Drivers\CMSIS\Include\cmsis_armclang.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
   ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h \
@@ -31,4 +31,4 @@ gnveda_terminal_f103/ef_port.o: ..\Core\Src\ef_port.c \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdarg.h

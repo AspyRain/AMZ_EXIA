@@ -28,7 +28,7 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
-
+#include "cJSON.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -53,11 +53,15 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+static void test_env(void) ;
 void rgb_body_task(void *promt);
 void commandParsingTask(void *prmt);
 void clearUsart();
 void print_hex_data(uint32_t value);
 void rgb_gn_drive_task(void *promt);
+void sendDataChunked(UART_HandleTypeDef *huart, const char *data);
+void sendJsonData(cJSON *root);
+static void update_global_color(const char *envName, uint32_t color);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

@@ -1,12 +1,12 @@
 gnveda_terminal_f103/jsonutil.o: ..\Core\Src\jsonUtil.c \
   ..\Core\Inc\jsonUtil.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdio.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdio.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdlib.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\string.h \
   ..\Core\Inc\cJSON.h ..\Core\Inc\easyflash.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdint.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdint.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stddef.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   ..\Core\Inc\ef_cfg.h ..\Core\Inc\ef_def.h ..\Core\Inc\main.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
   ..\Core\Inc\stm32f1xx_hal_conf.h \
@@ -18,8 +18,8 @@ gnveda_terminal_f103/jsonutil.o: ..\Core\Src\jsonUtil.c \
   ..\Drivers\CMSIS\Include\cmsis_version.h \
   ..\Drivers\CMSIS\Include\cmsis_compiler.h \
   ..\Drivers\CMSIS\Include\cmsis_armclang.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\arm_compat.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\arm_acle.h \
   ..\Drivers\CMSIS\Device\ST\STM32F1xx\Include\system_stm32f1xx.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_rcc_ex.h \
@@ -39,7 +39,7 @@ gnveda_terminal_f103/jsonutil.o: ..\Core\Src\jsonUtil.c \
   ..\RT-Thread\rtconfig.h \
   ..\Middlewares\Third_Party\RealThread_RTOS\include\rtdebug.h \
   ..\Middlewares\Third_Party\RealThread_RTOS\include\rtdef.h \
-  D:\software\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
+  D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
   ..\Middlewares\Third_Party\RealThread_RTOS\include\rtservice.h \
   ..\Middlewares\Third_Party\RealThread_RTOS\finsh\finsh_api.h \
   ..\Middlewares\Third_Party\RealThread_RTOS\finsh\finsh_config.h

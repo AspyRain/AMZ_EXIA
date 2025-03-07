@@ -28,7 +28,7 @@
 
 #include <string.h>
 #include <easyflash.h>
-
+#include <rtthread.h>
 #if defined(EF_USING_ENV) && !defined(EF_ENV_USING_LEGACY_MODE)
 
 #ifndef EF_WRITE_GRAN
@@ -1047,24 +1047,40 @@ static uint32_t alloc_env(sector_meta_data_t sector, size_t env_size)
     uint32_t empty_env = FAILED_ADDR;
     size_t empty_sector = 0, using_sector = 0;
 
-    /* sector status statistics */
+    /* 输出传入的参数信息 */
+    rt_kprintf("alloc_env called with env_size: %u\n", env_size);
+
+    /* 统计扇区状态 */
     sector_iterator(sector, SECTOR_STORE_UNUSED, &empty_sector, &using_sector, sector_statistics_cb, false);
+    rt_kprintf("Empty sectors: %u, Using sectors: %u\n", empty_sector, using_sector);
+
     if (using_sector > 0) {
-        /* alloc the ENV from the using status sector first */
+        /* 优先从使用状态的扇区分配 ENV */
+        rt_kprintf("Attempting to allocate ENV from using sectors...\n");
         sector_iterator(sector, SECTOR_STORE_USING, &env_size, &empty_env, alloc_env_cb, true);
     }
+
     if (empty_sector > 0 && empty_env == FAILED_ADDR) {
         if (empty_sector > EF_GC_EMPTY_SEC_THRESHOLD || gc_request) {
+            rt_kprintf("Allocating ENV from empty sectors...\n");
             sector_iterator(sector, SECTOR_STORE_EMPTY, &env_size, &empty_env, alloc_env_cb, true);
         } else {
-            /* no space for new ENV now will GC and retry */
-            EF_DEBUG("Trigger a GC check after alloc ENV failed.\n");
+            /* 无法为新 ENV 分配空间，将进行垃圾回收并重试 */
+            rt_kprintf("Triggering garbage collection after failed ENV allocation.\n");
             gc_request = true;
         }
     }
 
+    /* 输出分配结果 */
+    if (empty_env != FAILED_ADDR) {
+        rt_kprintf("ENV allocated at address: 0x%08X\n", empty_env);
+    } else {
+        rt_kprintf("Failed to allocate ENV.\n");
+    }
+
     return empty_env;
 }
+
 
 static EfErrCode del_env(const char *key, env_node_obj_t old_env, bool complete_del) {
     EfErrCode result = EF_NO_ERR;
@@ -1208,7 +1224,7 @@ __retry:
 static uint32_t new_env_by_kv(sector_meta_data_t sector, size_t key_len, size_t buf_len)
 {
     size_t env_len = ENV_HDR_DATA_SIZE + EF_WG_ALIGN(key_len) + EF_WG_ALIGN(buf_len);
-
+    rt_kprintf("env_len = %d\n", env_len);
     return new_env(sector, env_len);
 }
 
@@ -1436,6 +1452,7 @@ static EfErrCode set_env(const char *key, const void *value_buf, size_t buf_len)
     } else {
         /* make sure the flash has enough space */
         if (new_env_by_kv(&sector, strlen(key), buf_len) == FAILED_ADDR) {
+            rt_kprintf("Error: The ENV size is too big\n"); 
             return EF_ENV_FULL;
         }
         env_is_found = find_env(key, &env);
@@ -1644,8 +1661,8 @@ void ef_print_env(void)
 
     env_iterator(&env, &using_size, NULL, print_env_cb);
 
-    ef_print("\nmode: next generation\n");
-    ef_print("size: %lu/%lu bytes.\n", using_size + (SECTOR_NUM - EF_GC_EMPTY_SEC_THRESHOLD) * SECTOR_HDR_DATA_SIZE,
+    rt_kprintf("\nmode: next generation\n");
+    rt_kprintf("size: %lu/%lu bytes.\n", using_size + (SECTOR_NUM - EF_GC_EMPTY_SEC_THRESHOLD) * SECTOR_HDR_DATA_SIZE,
             ENV_AREA_SIZE - SECTOR_SIZE * EF_GC_EMPTY_SEC_THRESHOLD);
 
     /* unlock the ENV cache */

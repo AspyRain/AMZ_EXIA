@@ -29,7 +29,7 @@ gnveda_terminal_f103/gn_controller.o: ..\Core\Src\gn_controller.c \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_tim_ex.h \
   ..\Drivers\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal_uart.h \
-  ..\Core\Inc\easyflash.h \
+  ..\Core\Inc\cJSON.h ..\Core\Inc\easyflash.h \
   D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
   ..\Core\Inc\ef_cfg.h ..\Core\Inc\ef_def.h \
   ..\Middlewares\Third_Party\RealThread_RTOS\include\rtthread.h \
@@ -39,4 +39,5 @@ gnveda_terminal_f103/gn_controller.o: ..\Core\Src\gn_controller.c \
   D:\software\Keil5\ARM\ARMCLANG\Bin\..\include\stdarg.h \
   ..\Middlewares\Third_Party\RealThread_RTOS\include\rtservice.h \
   ..\Middlewares\Third_Party\RealThread_RTOS\finsh\finsh_api.h \
-  ..\Middlewares\Third_Party\RealThread_RTOS\finsh\finsh_config.h
+  ..\Middlewares\Third_Party\RealThread_RTOS\finsh\finsh_config.h \
+  ..\Core\Inc\global.h

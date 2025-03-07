@@ -6801,54 +6801,54 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       294          0          4          0      15432       4901   board.o
-      8986        114         16          8          4      53745   cjson.o
-       116          0          0          0          4       2762   clock.o
-      2750        420        613          0          0      13411   cmd.o
-       194          0         21          0          0       3712   components.o
-       244         28          0          0          0        868   context_rvds.o
-      1128        168        429          0         16       3647   cpuport.o
-        84          0          0          0          0       2581   dma.o
-       136         48        108          0          1       1377   easyflash.o
-      9708        684        442          0        256      47671   ef_env.o
-       272          0        321         12          0       4518   ef_port.o
-       194          0       1024          0          0       1512   ef_utils.o
-      1196         40         20         28          0       7712   gn_controller.o
-        96          0          0          0          0       1452   gpio.o
-       142          8          0          0        376       3447   idle.o
-       366          0          0          0          0       7103   ipc.o
-        56          0          0          0          1       1237   irq.o
-       780        280         50          0          0       4328   jsonutil.o
-      4678        424        263          0        128      26908   kservice.o
-      2726        354        474         36        322      14113   main.o
-      1066        216         51          0         56       6022   mem.o
-      1600         64        200          0          0       7216   msh.o
-       368          0          0         48          0       7720   object.o
-      1994        136        101          0          8      13158   rgb.o
-       806          0          0          0        276       6189   scheduler.o
-      1364        218          9          0        153       6536   shell.o
+       294          0          4          0      15432       4896   board.o
+      8986        114         16          8          4      53740   cjson.o
+       116          0          0          0          4       2787   clock.o
+      2750        420        613          0          0      13436   cmd.o
+       194          0         21          0          0       3737   components.o
+       244         28          0          0          0        892   context_rvds.o
+      1128        168        429          0         16       3672   cpuport.o
+        84          0          0          0          0       2576   dma.o
+       136         48        108          0          1       1372   easyflash.o
+      9708        684        442          0        256      47621   ef_env.o
+       272          0        321         12          0       4423   ef_port.o
+       194          0       1024          0          0       1462   ef_utils.o
+      1196         40         20         28          0       7707   gn_controller.o
+        96          0          0          0          0       1447   gpio.o
+       142          8          0          0        376       3472   idle.o
+       366          0          0          0          0       7128   ipc.o
+        56          0          0          0          1       1262   irq.o
+       780        280         50          0          0       4323   jsonutil.o
+      4678        424        263          0        128      26931   kservice.o
+      2726        354        474         36        322      14109   main.o
+      1066        216         51          0         56       6047   mem.o
+      1600         64        200          0          0       7241   msh.o
+       368          0          0         48          0       7745   object.o
+      1994        136        101          0          8      13154   rgb.o
+       806          0          0          0        276       6214   scheduler.o
+      1364        218          9          0        153       6559   shell.o
         64         26        304          0       4864        836   startup_stm32f103xe.o
-        76          0          0          8          4       6151   stm32f1xx_hal.o
-       194          0          0          0          0       8877   stm32f1xx_hal_cortex.o
-      1352          0          0          0          0       8612   stm32f1xx_hal_dma.o
-       462          0          0          0         32       5598   stm32f1xx_hal_flash.o
-       238          0          0          0          0       7015   stm32f1xx_hal_flash_ex.o
-       518         22          0          0          0       4621   stm32f1xx_hal_gpio.o
-        66          0          0          0          0       1275   stm32f1xx_hal_msp.o
-      1548          0         18          0          0       7730   stm32f1xx_hal_rcc.o
-      2612         16          0          0          0      54507   stm32f1xx_hal_tim.o
-       226          0          0          0          0      20900   stm32f1xx_hal_tim_ex.o
-       188          0          0          0         72       6260   stm32f1xx_hal_timebase_tim.o
-      2314          0          0          0          0      32602   stm32f1xx_hal_uart.o
-        70          0          0          0          0       5589   stm32f1xx_it.o
-       114          0         24          4          0       1701   system_stm32f1xx.o
-       954          0          0          0          0      10441   thread.o
-       528          0          0          0        276       6140   tim.o
-       822          8          0          0         12       9055   timer.o
-       474         24          0          0        144       6788   usart.o
+        76          0          0          8          4       6146   stm32f1xx_hal.o
+       194          0          0          0          0       8872   stm32f1xx_hal_cortex.o
+      1352          0          0          0          0       8607   stm32f1xx_hal_dma.o
+       462          0          0          0         32       5593   stm32f1xx_hal_flash.o
+       238          0          0          0          0       7010   stm32f1xx_hal_flash_ex.o
+       518         22          0          0          0       4616   stm32f1xx_hal_gpio.o
+        66          0          0          0          0       1270   stm32f1xx_hal_msp.o
+      1548          0         18          0          0       7725   stm32f1xx_hal_rcc.o
+      2612         16          0          0          0      54502   stm32f1xx_hal_tim.o
+       226          0          0          0          0      20895   stm32f1xx_hal_tim_ex.o
+       188          0          0          0         72       6255   stm32f1xx_hal_timebase_tim.o
+      2314          0          0          0          0      32597   stm32f1xx_hal_uart.o
+        70          0          0          0          0       5584   stm32f1xx_it.o
+       114          0         24          4          0       1696   system_stm32f1xx.o
+       954          0          0          0          0      10466   thread.o
+       528          0          0          0        276       6135   tim.o
+       822          8          0          0         12       9080   timer.o
+       474         24          0          0        144       6738   usart.o
 
     ----------------------------------------------------------------------
-     54372       3298       4528        144      22448     458544   Object Totals
+     54372       3298       4528        144      22448     458576   Object Totals
          0          0         32          0          0          0   (incl. Generated)
        208          0          4          0         11          0   (incl. Padding)
 
@@ -6996,8 +6996,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     70382       4178       5178        144      22544     461812   Grand Totals
-     70382       4178       5178        144      22544     461812   ELF Image Totals
+     70382       4178       5178        144      22544     461844   Grand Totals
+     70382       4178       5178        144      22544     461844   ELF Image Totals
      70382       4178       5178        144          0          0   ROM Totals
 
 ==============================================================================
